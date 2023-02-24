@@ -4,7 +4,7 @@ from lib.Util import *
 import time
 
 continue_solver = True
-splash_screen(True)
+splash_screen()
 while(continue_solver):
     point_list = []
     Point.calculation_count = 0
@@ -68,22 +68,5 @@ while(continue_solver):
             valid_continue_choice = True
             print("Thank you for trying our closest points generator! :)")
             print("=========================o========================= \n")
-            splash_screen(False)
         else:
             print("Input invalid! Please input again! \n")
-
-# print()
-# print("Result by brute force: ")
-# print(brute_force(point_list)[0])
-# brute_force(point_list)[1][0].print()
-# brute_force(point_list)[1][1].print()
-# print()
-# print("Result by divide and conquer: ")
-# result = solve(point_list, 0)
-# print(result[0]) 
-# result[1][0].print() 
-# result[1][1].print()
-# solve(point_list, 0)[1][0].print()
-# solve(point_list, 0)[1][1].print()
-# print()
-# print("Count: ", Point.calculation_count)

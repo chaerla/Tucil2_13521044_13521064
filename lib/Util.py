@@ -13,15 +13,12 @@ def generate_random_points(n_dimension):
         temp_point.coordinates.append(temp)
     return temp_point
 
-def splash_screen(start):
+def splash_screen():
     root = tk.Tk()
     root.geometry("300x200")
     root.overrideredirect(True)
-    root.configure(bg = "white")
-    if (start):
-        text_label = ttk.Label(root, text = "WELCOME :)", foreground = "black", font = ("Georgia", 14), anchor = "center")
-    else:
-        text_label = ttk.Label(root, text = "THANK YOU :)", foreground = "black", font = ("Georgia", 14), anchor = "center")
+    root.configure(bg = "white")  
+    text_label = ttk.Label(root, text = "WELCOME! :)", foreground = "black", font = ("Georgia", 24))
     text_label.pack(pady = 65)
 
     root.update_idletasks()
