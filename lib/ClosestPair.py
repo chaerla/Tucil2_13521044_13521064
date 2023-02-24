@@ -11,24 +11,28 @@ def brute_force(point_list):
         tuple: A tuple of the minimum distance and the related pair of points 
     """
     min = float("inf")
-    closest_pair = (point_list[0], point_list[1])
+    if(len(point_list)==1):
+        return (min, None)
+    # closest_pair = (point_list[0], point_list[1])
     for i in range (len(point_list)):
         for j in range (i+1, len(point_list)):
             dist = Point.distance(point_list[i], point_list[j])
             if (dist < min):
                 min = dist
                 closest_pair = (point_list[i], point_list[j])
-    return (dist, closest_pair)
+    return (min, closest_pair)
 
 def strip_closest(strip):
     min = float("inf")
-    closest_pair = (strip[0], strip[1])
+    if(len(strip)==1):
+        return (min, None)
+    # closest_pair = (strip[0], strip[1])
     dim = strip[0].dimension-1
     sort_points_by_dimension(strip, dim)
     n = len(strip)
     for i in range (n):
         for j in range (i+1, n):
-            if (strip[j][dim] - strip[i][dim] >= min):
+            if (strip[j].coordinates[dim] - strip[i].coordinates[dim] >= min):
                 break
             dist = Point.distance(strip[i], strip[j])
             if dist < min:
@@ -84,10 +88,10 @@ def solve(point_list, step):
         closest_pair_slab = solve(slab, step+1)
         if(closest_pair_slab[0] < closest_pair[0]):
             return closest_pair_slab
-    elif (len(slab)>=2): # The current step is examining in 2D and there are at least two points in the strip
+    else: # The current step is examining in 2D and there are at least two points in the strip
         closest_pair_strip = strip_closest(slab)
         if(closest_pair_strip[0] < closest_pair[0]):
-            return closest_pair_slab
+            return closest_pair_strip
     return closest_pair
 
     

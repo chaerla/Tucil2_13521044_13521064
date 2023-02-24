@@ -8,8 +8,9 @@ for i in range (5):
     point_list.append(temp_point)
 
 print(brute_force(point_list)[0])
-print(solve(point_list, 0)[0])
+print(solve(point_list, 0))
 brute_force(point_list)[1][0].print()
 brute_force(point_list)[1][1].print()
+print()
 solve(point_list, 0)[1][0].print()
 solve(point_list, 0)[1][1].print()
