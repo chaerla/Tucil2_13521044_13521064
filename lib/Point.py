@@ -3,6 +3,7 @@ import math
 class Point:
     dimension : int # dimension
     coordinates : list # list of coordinates in each dimension. coordinates[0] -> dimension 0 (e.g x)
+    calculation_count = 0
     """
     Construct an object in Point class
 
@@ -32,7 +33,7 @@ class Point:
         """
         if self.dimension != other.dimension:
             raise ValueError("Points are not of the same dimension")
-
+        Point.calculation_count += 1
         # Calculate the sum of squared differences in each dimension
         return math.sqrt(sum([(self.coordinates[i] - other.coordinates[i])**2 for i in range(self.dimension)]))
     
