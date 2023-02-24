@@ -4,12 +4,12 @@ from lib.Util import *
 import time
 
 continue_solver = True
-splash_screen_start()
+splash_screen(True)
 while(continue_solver):
     point_list = []
     Point.calculation_count = 0
     print("=========================o=========================")
-    print("Welcome to our closest point generator!")
+    print("Welcome to our closest points generator!")
     number_of_points = int(input("Input the number of points to be calculated: "))
     dimension = int(input("Input the dimension: "))
     for i in range(number_of_points):
@@ -22,7 +22,7 @@ while(continue_solver):
     end_time_1 = time.time()
     elapsed_time_1 = end_time_1 - start_time_1
 
-    print("Result by divide and conquer: \n")              
+    print("Result by divide and conquer:")              
     print("Distance:", result_1[0]) 
     print("Point 1: "), result_1[1][0].print()
     print("\n")
@@ -39,7 +39,7 @@ while(continue_solver):
     end_time_2 = time.time()
     elapsed_time_2 = end_time_2 - start_time_2
 
-    print("Result by brute force: \n")              
+    print("Result by brute force: ")              
     print("Distance:", result_2[0]) 
     print("Point 1: "), result_2[1][0].print()
     print("\n")
@@ -48,6 +48,13 @@ while(continue_solver):
 
     print("Calculation Count: ", Point.calculation_count)
     print("Time taken:", elapsed_time_2, "seconds", "\n")
+
+    # Point Plotter
+    if (dimension == 3):
+        list_of_points = [] # List Containing Points (As List)
+        for point in point_list:
+            list_of_points.append(point.coordinates)
+        show_plotter(list_of_points, result_1[1][0].coordinates, result_1[1][1].coordinates)
     
     valid_continue_choice = False
     while (not valid_continue_choice):
@@ -59,9 +66,9 @@ while(continue_solver):
         elif (continue_choice == "n"):
             continue_solver = False
             valid_continue_choice = True
-            print("Thank you for trying our closest point generator! :)")
+            print("Thank you for trying our closest points generator! :)")
             print("=========================o========================= \n")
-            splash_screen_end()
+            splash_screen(False)
         else:
             print("Input invalid! Please input again! \n")
 
