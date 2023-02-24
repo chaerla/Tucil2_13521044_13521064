@@ -13,7 +13,6 @@ def brute_force(point_list):
     min = float("inf")
     if(len(point_list)==1):
         return (min, None)
-    # closest_pair = (point_list[0], point_list[1])
     for i in range (len(point_list)):
         for j in range (i+1, len(point_list)):
             dist = Point.distance(point_list[i], point_list[j])
@@ -23,16 +22,26 @@ def brute_force(point_list):
     return (min, closest_pair)
 
 def strip_closest(strip):
+    """
+    Recursively find the closest pair of points in point_list using divide and conquer algorithm
+
+    Args:
+        point_list (list): List of Point objects (prereq: size must be >= 2)
+        step (int): current step (the pointss will be sorted by "step" dimension)
+
+    Returns:
+        tuple: A tuple of the minimum distance and the related pair of points 
+    """
     min = float("inf")
     if(len(strip)==1):
         return (min, None)
     # closest_pair = (strip[0], strip[1])
-    dim = strip[0].dimension-1
-    sort_points_by_dimension(strip, dim)
+    dim = strip[0].dimension-1 # use the "last" dimension 
+    sort_points_by_dimension(strip, dim) # sort the points by the "last" dimension
     n = len(strip)
     for i in range (n):
         for j in range (i+1, n):
-            if (strip[j].coordinates[dim] - strip[i].coordinates[dim] >= min):
+            if (strip[j].coordinates[dim] - strip[i].coordinates[dim] >= min): 
                 break
             dist = Point.distance(strip[i], strip[j])
             if dist < min:

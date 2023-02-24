@@ -4,24 +4,32 @@ class Point:
     dimension : int # dimension
     coordinates : list # list of coordinates in each dimension. coordinates[0] -> dimension 0 (e.g x)
     """
-    constructor point
+    Construct an object in Point class
+
+    Args:
+        dimension : the dimension of the point
+
     """
     def __init__(self, dimension: int):
         self.dimension = dimension
         self.coordinates = []
 
-    """
-    fill point coordinates
-    """
     def get_coordinates(self):
+        """
+        Inputs coordinates
+        """
         for i in range (self.dimension):
             temp = int(input("Enter the coordinate on the point in dimension "+str(i)+ ": "))
             self.coordinates.append(temp)
     
-    """
-    calculate distance between two points
-    """
     def distance(self, other):
+        """
+        Find the distance between two points
+
+        Args:
+            other: the other point
+
+        """
         if self.dimension != other.dimension:
             raise ValueError("Points are not of the same dimension")
 
@@ -29,6 +37,9 @@ class Point:
         return math.sqrt(sum([(self.coordinates[i] - other.coordinates[i])**2 for i in range(self.dimension)]))
     
     def print(self):
+        """
+        Prints coordinates of the point
+        """
         print("(",end="")
         for i in range (self.dimension):
             print(self.coordinates[i],end="")
