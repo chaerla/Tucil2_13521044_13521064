@@ -21,7 +21,7 @@ def brute_force(point_list):
                 closest_pair = (point_list[i], point_list[j])
     return (min, closest_pair)
 
-def strip_closest(strip):
+def strip_closest(strip, closest_pair):
     """
     Recursively find the closest pair of points in point_list using divide and conquer algorithm
 
@@ -32,22 +32,18 @@ def strip_closest(strip):
     Returns:
         tuple: A tuple of the minimum distance and the related pair of points 
     """
-    min = float("inf")
-    if(len(strip)==1):
-        return (min, None)
     # closest_pair = (strip[0], strip[1])
     dim = strip[0].dimension-1 # use the "last" dimension 
-    sort_points_by_dimension(strip, dim) # sort the points by the "last" dimension
+    strip = sort_points_by_dimension(strip, dim) # sort the points by the "last" dimension
     n = len(strip)
     for i in range (n):
         for j in range (i+1, n):
-            if (strip[j].coordinates[dim] - strip[i].coordinates[dim] >= min): 
+            if (strip[j].coordinates[dim] - strip[i].coordinates[dim] >= closest_pair[0]): 
                 break
             dist = Point.distance(strip[i], strip[j])
-            if dist < min:
-                min = dist
-                closest_pair = (strip[i], strip[j])
-    return (min, closest_pair)
+            if dist < closest_pair[0]:
+                closest_pair = (dist, (strip[i], strip[j]))
+    return closest_pair
 
 
 def solve(point_list, step):
@@ -62,7 +58,7 @@ def solve(point_list, step):
         tuple: A tuple of the minimum distance and the related pair of points 
     """
 
-    sort_points_by_dimension(point_list, step)
+    point_list = sort_points_by_dimension(point_list, step)
     n = len(point_list)
 
     # if the size of the point_list is <= 3, no need to divide
@@ -98,9 +94,7 @@ def solve(point_list, step):
         if(closest_pair_slab[0] < closest_pair[0]):
             return closest_pair_slab
     else: # The current step is examining in 2D and there are at least two points in the strip
-        closest_pair_strip = strip_closest(slab)
-        if(closest_pair_strip[0] < closest_pair[0]):
-            return closest_pair_strip
+        closest_pair = strip_closest(slab, closest_pair)
     return closest_pair
 
     
