@@ -44,6 +44,6 @@ class Point:
         print("(",end="")
         for i in range (self.dimension):
             print(self.coordinates[i],end="")
-            if (i!= self.dimension - 1):
+            if (i!= self.dimension - 1 and not(i==0 and self.dimension ==1)):
                 print(", ",end="")
         print(")",end="")

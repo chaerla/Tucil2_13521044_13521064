@@ -9,9 +9,11 @@ while(continue_solver):
     point_list = []
     Point.calculation_count = 0
     print("=========================o=========================")
+    print()
     print("Welcome to our closest points generator!")
-    number_of_points = int(input("Input the number of points to be calculated: "))
-    dimension = int(input("Input the dimension: "))
+    print()
+    number_of_points = get_num_of_points()
+    dimension = get_dimension()
     for i in range(number_of_points):
         temp_point = generate_random_points(dimension)
         point_list.append(temp_point)
@@ -21,7 +23,7 @@ while(continue_solver):
     result_1 = solve(point_list, 0)
     end_time_1 = time.time()
     elapsed_time_1 = end_time_1 - start_time_1
-
+    print()
     print("Result by divide and conquer:")              
     print("Distance:", result_1[0]) 
     print("Point 1: "), result_1[1][0].print()
@@ -30,8 +32,9 @@ while(continue_solver):
     print("\n")
 
     print("Calculation Count: ", Point.calculation_count)
-    print("Time taken:", elapsed_time_1, "seconds", "\n")
-
+    print("Time taken:", elapsed_time_1*1000, "ms", "\n")
+    print()
+    print()
     # Brute Force
     Point.calculation_count = 0
     start_time_2 = time.time()
@@ -47,7 +50,8 @@ while(continue_solver):
     print("\n")
 
     print("Calculation Count: ", Point.calculation_count)
-    print("Time taken:", elapsed_time_2, "seconds", "\n")
+    print("Time taken:", elapsed_time_2*1000, "ms", "\n")
+    print()
 
     # Point Plotter
     if (dimension == 3):
@@ -66,7 +70,11 @@ while(continue_solver):
         elif (continue_choice == "n"):
             continue_solver = False
             valid_continue_choice = True
+            print()
+            print_computer_spec()
+            print()
             print("Thank you for trying our closest points generator! :)")
+            print()
             print("=========================o========================= \n")
         else:
             print("Input invalid! Please input again! \n")

@@ -5,6 +5,8 @@ import tkinter as tk
 import matplotlib.pyplot as plt
 import numpy as np
 import random
+import platform
+import psutil
 
 def generate_random_points(n_dimension):
     temp_point = Point(dimension = n_dimension)
@@ -48,3 +50,42 @@ def show_plotter(point_list, point_1, point_2):
     ax.set_zlabel('Z')
 
     plt.show()
+
+def get_num_of_points():
+    """
+    asks for the num of points and validates if it's an integer
+    """
+    while True:
+        try:
+            num_of_points = int(input("Enter the number of points: "))
+            if num_of_points > 1:
+                return num_of_points
+            print("The number of points must be larger than 1.")
+        except ValueError:
+            print("Invalid input. Please enter an integer.")
+
+def get_dimension():
+    """
+    asks for the dimension and validates if it's an integer
+    """
+    while True:
+        try:
+            dimension = int(input("Enter the dimension of the points: "))
+            return dimension
+        except ValueError:
+            print("Invalid input. Please enter an integer.")
+
+def print_computer_spec():
+    print("This program is being run on a computer with this specification:")
+    # get the system information
+    system = platform.uname()
+
+    # get the CPU information
+    cpu = platform.processor()
+
+    # get the memory information
+    memory = psutil.virtual_memory()
+    print("System: {} {}".format(system.system, system.release))
+    print("Node name: {}".format(system.node))
+    print("CPU: {}".format(cpu))
+    print("Memory: {} MB".format(memory.total / (1024*1024)))
