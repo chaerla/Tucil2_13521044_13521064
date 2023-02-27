@@ -14,8 +14,12 @@ while(continue_solver):
     print()
     number_of_points = get_num_of_points()
     dimension = get_dimension()
+    print()
+    print("Generating random points ...")
     for i in range(number_of_points):
         temp_point = generate_random_points(dimension)
+        temp_point.print()
+        print()
         point_list.append(temp_point)
 
     # Divide and Conquer
@@ -25,16 +29,12 @@ while(continue_solver):
     elapsed_time_1 = end_time_1 - start_time_1
     print()
     print("Result by divide and conquer:")              
-    print("Distance:", result_1[0]) 
-    print("Point 1: "), result_1[1][0].print()
-    print("\n")
-    print("Point 2: "), result_1[1][1].print()
-    print("\n")
+    print_closest_pair(result_1)
 
     print("Calculation Count: ", Point.calculation_count)
     print("Time taken:", elapsed_time_1*1000, "ms", "\n")
     print()
-    print()
+
     # Brute Force
     Point.calculation_count = 0
     start_time_2 = time.time()
@@ -43,11 +43,7 @@ while(continue_solver):
     elapsed_time_2 = end_time_2 - start_time_2
 
     print("Result by brute force: ")              
-    print("Distance:", result_2[0]) 
-    print("Point 1: "), result_2[1][0].print()
-    print("\n")
-    print("Point 2: "), result_2[1][1].print()
-    print("\n")
+    print_closest_pair(result_2)
 
     print("Calculation Count: ", Point.calculation_count)
     print("Time taken:", elapsed_time_2*1000, "ms", "\n")

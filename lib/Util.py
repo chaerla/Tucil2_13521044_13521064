@@ -89,3 +89,4 @@ def print_computer_spec():
     print("Node name: {}".format(system.node))
     print("CPU: {}".format(cpu))
     print("Memory: {} MB".format(memory.total / (1024*1024)))
+    

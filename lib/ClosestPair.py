@@ -132,3 +132,10 @@ def sort_points_by_dimension(point_list, n):
         return merge(left, right)
     
     return merge_sort(point_list)
+
+def print_closest_pair(closest_pair):
+    print("Distance:", closest_pair[0]) 
+    print("Point 1: "), closest_pair[1][0].print()
+    print("\n")
+    print("Point 2: "), closest_pair[1][1].print()
+    print("\n")
