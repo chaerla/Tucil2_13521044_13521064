@@ -100,7 +100,7 @@ def solve(point_list, step):
     
 def sort_points_by_dimension(point_list, n):
     """
-    Sort a list of points by the n-th dimension
+    Sort a list of points by the n-th dimension using merge sort algorithm
 
     Args:
         point_list (list): List of Point objects
@@ -109,9 +109,26 @@ def sort_points_by_dimension(point_list, n):
     Returns:
         list: Sorted list of Point objects
     """
-    def get_nth_coordinate(point):
-        return point.coordinates[n]
+    def merge(left, right):
+        result = []
+        i = j = 0
+        while i < len(left) and j < len(right):
+            if left[i].coordinates[n] <= right[j].coordinates[n]:
+                result.append(left[i])
+                i += 1
+            else:
+                result.append(right[j])
+                j += 1
+        result += left[i:]
+        result += right[j:]
+        return result
     
-    sorted_points = sorted(point_list, key=get_nth_coordinate)
-    return sorted_points
-
+    def merge_sort(point_list):
+        if len(point_list) <= 1:
+            return point_list
+        mid = len(point_list) // 2
+        left = merge_sort(point_list[:mid])
+        right = merge_sort(point_list[mid:])
+        return merge(left, right)
+    
+    return merge_sort(point_list)
