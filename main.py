@@ -32,7 +32,7 @@ while(continue_solver):
     print_closest_pair(result_1)
 
     print("Calculation Count: ", Point.calculation_count)
-    print("Time taken:", elapsed_time_1*1000, "ms", "\n")
+    print("Time taken:", elapsed_time_1, "seconds", "\n")
     print()
 
     # Brute Force
@@ -46,7 +46,7 @@ while(continue_solver):
     print_closest_pair(result_2)
 
     print("Calculation Count: ", Point.calculation_count)
-    print("Time taken:", elapsed_time_2*1000, "ms", "\n")
+    print("Time taken:", elapsed_time_2, "seconds", "\n")
     print()
 
     # Point Plotter
